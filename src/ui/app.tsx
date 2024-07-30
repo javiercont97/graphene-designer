@@ -1,8 +1,16 @@
-import './styles/index.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import AppContainer from './views/AppContainer';
+import './styles/App.css';
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+const App: React.FC = () => {
+	return (
+		<React.StrictMode>
+			<AppContainer />
+		</React.StrictMode>
+	);
+};
+  
 
 const root = createRoot(document.getElementById('root'));
-root.render(<h2>Hello from React!</h2>);
+root.render(<App />);

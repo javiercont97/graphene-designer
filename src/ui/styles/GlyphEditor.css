@@ -1,0 +1,23 @@
+.grid {
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	display: flex;
+}
+
+.pixel {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #1b1b1e;
+	cursor: pointer;
+}
+
+.pixel.on {
+	background-color: black;
+}
+
+.pixel.off {
+	background-color: white;
+}

@@ -1,4 +1,9 @@
-name: Graphene CI - Publish to PlatformIO registry
+name: Graphene designer CI - Publish to GitHub releases
+
+# TODO: Write CI/CD pipeline for Graphene designer
+# 1. Run unit tests
+# 2. Run devsecops checks (snyk, npm audit, etc)
+# 3. Publish package to GitHub releases
 
 on:
   push:
@@ -13,28 +18,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install testing deps
-      run: |
-        git clone https://github.com/ThrowTheSwitch/Unity.git
-        cd Unity/
-        mkdir build
-        cd build
-        cmake ..
-        make
-        sudo make install
-        
-        sudo apt-get install -qq lcov
-
     - name: Run unit tests
       run: |
-        ./scripts/tests.sh
+        echo "Run unit tests here"
 
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-report
-        path: build/coverage_report
-        retention-days: 30
+    # - name: Upload coverage report
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: coverage-report
+    #     path: build/coverage_report
+    #     retention-days: 30
 
   publish:
     runs-on: ubuntu-latest
@@ -44,23 +37,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-
-    - name: Install PlatformIO
-      run: |
-        python -m pip install --upgrade pip
-        python3 -m pip install -U platformio
-
-    - name: Authenticate PlatformIO
-      env:
-        PIO_USERNAME: ${{ secrets.PIO_USERNAME }}
-        PIO_PASSWORD: ${{ secrets.PIO_PASSWORD }}
-      run: |
-        pio account login -u $PIO_USERNAME -p $PIO_PASSWORD
-
     - name: Publish Package
       run: |
-        ./scripts/publish.sh
+        echo "Publish package here"
