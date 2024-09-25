@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ItemSelect } from '../components/Graphene/ItemSelect';
-import FontDesigner from '../views/FontDesigner';
+import FontDesigner from './FontDesigner';
 import { Accordion, AccordionDetails, AccordionGroup, AccordionSummary, Tab, TabList, TabPanel, Tabs } from '@mui/joy';
 
 
@@ -22,7 +22,7 @@ const AppContainer: React.FC = () => {
 		const containerRect = container.getBoundingClientRect();
 		const newWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
 
-		if (newWidth < 5 || newWidth > 30) return;
+		if (newWidth < 5 || newWidth > 80) return;
 
 		setLeftWidth(newWidth);
 	};

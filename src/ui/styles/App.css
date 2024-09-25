@@ -24,10 +24,17 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #f0f0f0;
+	background-color: #0f0f0e;
 }
 
-.container {
+/* .container {
+	display: flex;
+	width: 100%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	flex-direction: column;
+} */
+
+/* .container {
 	display: flex;
 	width: 100%;
 	height: 100vh;
@@ -58,4 +65,4 @@ html {
 
 .divider:hover {
 	background-color: #5e5e5b;
-}
+} */

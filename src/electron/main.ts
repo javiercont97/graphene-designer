@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { convertFontToHex, FontSize } from './service/font-generator';
+// import { convertFontToHex, FontSize } from './service/font-generator';
 
 
 if (require('electron-squirrel-startup')) {
@@ -12,20 +12,29 @@ const createWindow = () => {
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 		},
+		height: 600,
+		width: 800,
 	});
 
 	// mainWindow.setMenu(null);
-	mainWindow.maximize();
+	// mainWindow.maximize();
+
+	mainWindow.webContents.session.setCertificateVerifyProc(
+		(request, callback) => {
+			callback(0); // Ignore all certificates errors
+		}
+	);
 
 	// and load the index.html of the app.
 	if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
-		mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+		mainWindow.loadURL("https://172.19.0.2:32650");
+		// mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
 	} else {
 		mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
 	}
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	// mainWindow.webContents.openDevTools();
 };
 
 app.on('ready', createWindow);
@@ -41,6 +50,3 @@ app.on('activate', () => {
 		createWindow();
 	}
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
